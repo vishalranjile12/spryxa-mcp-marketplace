@@ -1,0 +1,14 @@
+{
+  "name": "spryxa",
+  "version": "0.1.0",
+  "description": "Use Spryxa marketing operations from Claude Code.",
+  "author": {
+    "name": "Spryxa",
+    "email": "support@spryxa.ai",
+    "url": "https://spryxa.ai"
+  },
+  "homepage": "https://spryxa.ai",
+  "license": "Proprietary",
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json"
+}

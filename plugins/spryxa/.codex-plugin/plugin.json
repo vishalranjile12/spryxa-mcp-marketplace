@@ -1,0 +1,44 @@
+{
+  "name": "spryxa",
+  "version": "0.1.0",
+  "description": "Use Spryxa marketing operations from Codex and ChatGPT.",
+  "author": {
+    "name": "Spryxa",
+    "email": "support@spryxa.ai",
+    "url": "https://spryxa.ai"
+  },
+  "homepage": "https://spryxa.ai",
+  "repository": "https://github.com/vishalranjile12/spryxa-mcp-marketplace",
+  "license": "Proprietary",
+  "keywords": [
+    "spryxa",
+    "marketing",
+    "mcp",
+    "content",
+    "campaigns",
+    "cro",
+    "website-conversion"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Spryxa",
+    "shortDescription": "Run Spryxa marketing workflows from Codex.",
+    "longDescription": "Create content, run campaigns, inspect project status, manage integrations, launch website-conversion workflows, and operate Spryxa marketing work through MCP.",
+    "developerName": "Spryxa",
+    "category": "Marketing",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://spryxa.ai",
+    "privacyPolicyURL": "https://spryxa.ai/privacy",
+    "termsOfServiceURL": "https://spryxa.ai/terms",
+    "defaultPrompt": [
+      "Improve website conversion with Spryxa",
+      "Create content with Spryxa",
+      "Check my Spryxa project status"
+    ],
+    "brandColor": "#2563EB"
+  }
+}

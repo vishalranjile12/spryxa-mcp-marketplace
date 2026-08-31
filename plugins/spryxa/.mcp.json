@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "spryxa": {
+      "url": "https://app.spryxa.ai/api/mcp/mcp",
+      "auth": "oauth",
+      "oauth_resource": "https://app.spryxa.ai/api/mcp/mcp",
+      "enabled": true
+    }
+  }
+}
