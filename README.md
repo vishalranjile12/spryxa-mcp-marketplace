@@ -54,6 +54,8 @@ Use these steps to import Spryxa for Codex or ChatGPT workspace users:
 
 Importing the marketplace does not authenticate individual users. Each user still connects their own Spryxa account.
 
+This marketplace uses **authentication on use**. That is intentional for workspace installs: users may receive the plugin from an admin without personally clicking an install button, so Codex should ask them to authenticate when they first invoke Spryxa.
+
 ## For Codex Users
 
 After an admin imports the marketplace and makes Spryxa available:
@@ -73,6 +75,27 @@ Then use Spryxa naturally, for example:
 @spryxa create LinkedIn content for this campaign
 @spryxa check what is blocked for my project
 ```
+
+## Reconnecting After Logout
+
+Spryxa includes `spryxa_logout`, but it does not include `spryxa_login`. Login is started by the Codex client because logged-out MCP requests are rejected before normal tools can run.
+
+After logging out, reconnect from Codex by using Spryxa again:
+
+```text
+@spryxa check my Spryxa login
+```
+
+Codex should receive Spryxa's OAuth challenge and show the authentication prompt. If the prompt does not appear, restart Codex and try again.
+
+For Codex CLI users:
+
+```powershell
+codex mcp list
+codex mcp login spryxa
+```
+
+Use the exact server name shown by `codex mcp list` if it differs from `spryxa`.
 
 ## For ChatGPT Users
 
