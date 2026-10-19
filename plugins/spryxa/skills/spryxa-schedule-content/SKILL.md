@@ -7,10 +7,10 @@ description: Schedule or publish Spryxa content safely, using content queue, cal
 
 Use this skill when the user wants to schedule, queue, reschedule, publish, or inspect planned content.
 
-Start with `spryxa_whoami`. If no project is active, use `spryxa_list_projects` and `spryxa_set_active_project`.
+Start with `spryxa_get_session`. If no project is active, use `spryxa_list_projects` and `spryxa_update_session_project`.
 
 Useful tools:
-`spryxa_get_content_queue`, `spryxa_list_content_library`, `spryxa_get_content`, `spryxa_schedule_content`, `spryxa_schedule_series`, `spryxa_publish_content`, `spryxa_update_content`.
+`spryxa_list_content_review_queue`, `spryxa_list_content_items`, `spryxa_get_content_item`, `spryxa_schedule_content_items`, `spryxa_publish_content_item`, `spryxa_update_content_item`.
 
 Before scheduling, make sure the target content, platform, date/time, timezone, and recipient/channel are clear.
 

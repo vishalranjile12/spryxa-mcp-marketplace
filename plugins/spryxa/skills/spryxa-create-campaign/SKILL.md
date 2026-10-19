@@ -7,10 +7,10 @@ description: Create or launch Spryxa campaign drafts, inspect ads performance, a
 
 Use this skill when the user wants to create a campaign draft, prepare ad/email campaign work, inspect campaign performance, or launch an approved campaign.
 
-Start with `spryxa_whoami`. If no project is active, use `spryxa_list_projects` and `spryxa_set_active_project`.
+Start with `spryxa_get_session`. If no project is active, use `spryxa_list_projects` and `spryxa_update_session_project`.
 
 Useful tools:
-`spryxa_create_campaign_draft`, `spryxa_launch_campaign`, `spryxa_get_ads_performance`, `spryxa_get_audience_insights`, `spryxa_get_crm_contacts`, `spryxa_manage_crm_contact`, `spryxa_get_email_campaign_stats`, `spryxa_send_email_campaign`, `spryxa_list_integrations`.
+`spryxa_create_ads_campaign_draft`, `spryxa_launch_ads_campaign`, `spryxa_get_ads_performance`, `spryxa_get_email_audience`, `spryxa_list_crm_contacts`, `spryxa_update_crm_contact`, `spryxa_list_email_campaign_stats`, `spryxa_send_email_campaign`, `spryxa_list_platform_connections`.
 
 Collect enough brief detail before creating a campaign: objective, audience, offer, destination URL or landing page, channel, budget guardrails, and approval owner.
 

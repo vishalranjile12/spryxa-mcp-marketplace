@@ -7,10 +7,10 @@ description: Connect or inspect Spryxa integrations such as social accounts, GA4
 
 Use this skill when the user wants to connect, verify, list, fix, or disconnect Spryxa integrations.
 
-Start with `spryxa_whoami`. If no project is active, use `spryxa_list_projects` and `spryxa_set_active_project`.
+Start with `spryxa_get_session`. If no project is active, use `spryxa_list_projects` and `spryxa_update_session_project`.
 
 Useful tools:
-`spryxa_list_integrations`, `spryxa_create_social_connection_link`, `spryxa_connect_external_platform`, `spryxa_get_social_connection_status`, `spryxa_disconnect_social_connection`, `spryxa_list_external_actions`, `spryxa_execute_external_action`.
+`spryxa_list_platform_connections`, `spryxa_connect_platform`, `spryxa_get_platform_connection_status`, `spryxa_disconnect_platform`, `spryxa_list_platform_actions`, `spryxa_run_platform_action`.
 
 Never ask for passwords, cookies, API keys, or OAuth tokens. For OAuth, return or explain the authorization URL and tell the user to approve it in their browser.
 

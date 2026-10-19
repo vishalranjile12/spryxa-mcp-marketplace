@@ -24,7 +24,7 @@ plugins/
 ## Current Spryxa MCP Endpoint
 
 ```text
-https://app.spryxa.ai/api/mcp/mcp
+https://app.spryxa.ai/mcp
 ```
 
 The MCP server is hosted by Spryxa. This repository only packages the MCP config, skills, and marketplace metadata.

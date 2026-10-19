@@ -10,7 +10,7 @@
       "name": "spryxa",
       "source": "./plugins/spryxa",
       "description": "Use Spryxa marketing operations, content, campaigns, project status, and website-conversion workflows through MCP.",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "author": {
         "name": "Spryxa",
         "email": "support@spryxa.ai",

@@ -5,7 +5,7 @@ This plugin bundles the Spryxa MCP server and Spryxa workflow skills for Codex, 
 ## Included MCP Server
 
 ```text
-https://app.spryxa.ai/api/mcp/mcp
+https://app.spryxa.ai/mcp
 ```
 
 The MCP server uses OAuth. Users still authenticate their own Spryxa account after the plugin is installed.
@@ -25,4 +25,4 @@ The MCP server uses OAuth. Users still authenticate their own Spryxa account aft
 
 ## Safety
 
-Spryxa write actions may require confirmation. Users must approve launches, publishing, sends, promotions, and other high-impact changes before the tool is called with `confirm:true`.
+Spryxa write actions may require confirmation. Website conversion launches immediately so Nova can validate readiness inside the workflow. Publishing, sends, promotions, risky site changes, and other high-impact actions still require approval when the tool requests `confirm:true`.

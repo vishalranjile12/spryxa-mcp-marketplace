@@ -9,9 +9,9 @@ Use this skill when the user wants Codex or another agent to operate Spryxa thro
 
 ## First Step
 
-Start each new Spryxa MCP session with `spryxa_whoami`.
+Start each new Spryxa MCP session with `spryxa_get_session`.
 
-If the response says project selection is needed, call `spryxa_list_projects`, ask or infer the intended project, then call `spryxa_set_active_project`. If the user is new, collect the website/domain and the user's role before creating the organization.
+If the response says project selection is needed, call `spryxa_list_projects`, ask or infer the intended project, then call `spryxa_update_session_project`. If the user is new, collect the website/domain and the user's role before creating the organization.
 
 Never ask for passwords, cookies, API keys, or OAuth tokens. OAuth approval happens in the user's browser through Spryxa connection tools or the Spryxa UI.
 
@@ -23,70 +23,51 @@ Do not publish, launch, promote, send, disconnect, enable higher autonomy, or st
 
 Approval-gate confirmation for a Plan launch means the user acknowledges who owns approvals. It does not approve future visual, pricing, offer, risky code, publishing, campaign, or site changes.
 
-Poll async workflows at most once per turn unless the user asks for active waiting. Prefer `spryxa_get_workflow_status` when a run id is available and `spryxa_list_workflow_runs` when it is not.
+Poll async workflows at most once per turn unless the user asks for active waiting. Prefer `spryxa_get_workflow_run` when a run id is available and `spryxa_list_workflow_runs` when it is not.
 
 ## Tool Groups
 
 Project and account context:
-`spryxa_whoami`, `spryxa_create_organization`, `spryxa_list_projects`, `spryxa_get_project`, `spryxa_set_active_project`, `spryxa_get_credit_balance`, `spryxa_logout`.
+`spryxa_get_session`, `spryxa_create_organization`, `spryxa_list_projects`, `spryxa_get_project`, `spryxa_update_session_project`, `spryxa_get_billing_credits`, `spryxa_disconnect_session`.
 
 Project intelligence:
-`spryxa_get_insights`, `spryxa_get_reports`, `spryxa_get_audit`, `spryxa_get_project_capabilities`, `spryxa_search`, `spryxa_fetch`.
+`spryxa_get_insights_overview`, `spryxa_list_site_analyses`, `spryxa_get_site_analysis`, `spryxa_get_project_capabilities`, `spryxa_search`, `spryxa_fetch`.
 
 Integrations:
-`spryxa_list_integrations`, `spryxa_create_social_connection_link`, `spryxa_connect_external_platform`, `spryxa_get_social_connection_status`, `spryxa_disconnect_social_connection`, `spryxa_list_external_actions`, `spryxa_execute_external_action`.
+`spryxa_list_platform_connections`, `spryxa_connect_platform`, `spryxa_get_platform_connection_status`, `spryxa_disconnect_platform`, `spryxa_list_platform_actions`, `spryxa_run_platform_action`.
 
 Content and publishing:
-`spryxa_generate_content`, `spryxa_update_content`, `spryxa_list_content_library`, `spryxa_get_content`, `spryxa_get_content_queue`, `spryxa_schedule_content`, `spryxa_schedule_series`, `spryxa_publish_content`.
+`spryxa_start_content_generation`, `spryxa_update_content_item`, `spryxa_list_content_items`, `spryxa_get_content_item`, `spryxa_list_content_review_queue`, `spryxa_schedule_content_items`, `spryxa_publish_content_item`.
 
 Campaigns, CRM, email, and audience:
-`spryxa_create_campaign_draft`, `spryxa_launch_campaign`, `spryxa_get_ads_performance`, `spryxa_get_crm_contacts`, `spryxa_manage_crm_contact`, `spryxa_get_email_campaign_stats`, `spryxa_send_email_campaign`, `spryxa_get_audience_insights`, `spryxa_run_pipeline_play`.
+`spryxa_create_ads_campaign_draft`, `spryxa_launch_ads_campaign`, `spryxa_get_ads_performance`, `spryxa_list_crm_contacts`, `spryxa_update_crm_contact`, `spryxa_list_email_campaign_stats`, `spryxa_send_email_campaign`, `spryxa_get_email_audience`, `spryxa_start_outreach_pipeline_play`.
 
 Missions, agent teams, and workflow orchestration:
-`spryxa_list_agent_teams`, `spryxa_list_missions`, `spryxa_get_mission`, `spryxa_create_mission`, `spryxa_update_mission_brief`, `spryxa_run_strategy_sprint`, `spryxa_approve_mission_plan`, `spryxa_transition_phase`, `spryxa_dispatch_agent_team`, `spryxa_get_command_center`, `spryxa_get_workflow_status`, `spryxa_list_workflow_runs`, `spryxa_list_pending_decisions`, `spryxa_get_grow_audience_status`.
+`spryxa_list_agent_teams`, `spryxa_list_missions`, `spryxa_get_mission`, `spryxa_create_mission`, `spryxa_update_mission_brief`, `spryxa_start_mission_strategy_sprint`, `spryxa_approve_mission_plan`, `spryxa_update_mission_phase`, `spryxa_start_agent_team_run`, `spryxa_get_mission_command_center`, `spryxa_get_workflow_run`, `spryxa_list_workflow_runs`
 
 Website, crawler, and site-change work:
-Use the curated crawler tools registered by Spryxa for crawl, analysis status, analysis results, browser/page reads, and codegen support. For customer site changes use `spryxa_propose_site_change` first, then `spryxa_promote_site_change` only after explicit approval.
+Use the curated crawler tools registered by Spryxa for crawl, analysis status, analysis results, browser/page reads, and codegen support. For customer site changes use `spryxa_start_site_change` first, then `spryxa_promote_site_change` only after explicit approval.
 
 KPI ledger:
-`spryxa_get_kpi_ledger`, `spryxa_record_kpi_snapshot`, `spryxa_seed_kpi_definitions`.
+`spryxa_get_kpi_ledger`, `spryxa_create_kpi_snapshot`, `spryxa_create_kpi_definitions`.
 
 ## Website Conversion Plan
 
-When the user asks to "improve website conversion", "run CRO", "fix conversion issues", or "launch the website-conversion Plan", prefer the dedicated Plan workflow tool if it is available:
+When the user asks to "improve website conversion", "run CRO", "fix conversion issues", or "launch the website-conversion Plan", start the Plan workflow in one call:
 
-`spryxa_improve_website_conversion`
+`spryxa_start_workflow` with `workflow: "website_conversion"` and `inputs: {}`.
 
-Expected Plan identity:
-`teamSlug: "website"`, `outcomeSlug: "website-conversion"`, `agentKey: "improve-website-conversion"`.
+For the exact request "Improve website conversion with Spryxa", use the active project and launch immediately. Do not call readiness, analysis, connection, workflow-catalog, or next-action tools first, and do not ask for launch, ownership, integration, or approval-gate confirmation. Nova validates those conditions inside the workflow. Only resolve a project first when none is active.
 
-Required analyses:
-`GENERAL`, `SEO`, `BRAND_BOOK`.
+Expected MCP identity: Marketing Team run `mtr_<12-hex>`, Temporal workflow class `PersonaWorkflow`, workflow type `nova-agent`.
 
-Required Plan inputs:
-`Site crawl`, `Editable site surface or implementation owner`, `Google Analytics 4`, `Search Console`, `Approval rules for visual or risky changes`.
-
-Approval gates:
-`Visual layout changes`, `Pricing or offer copy`, `Risky code or conversion changes`.
-
-If the dedicated tool is not available, do not silently replace it with `spryxa_dispatch_agent_team`; tell the user that the dedicated MCP Plan tool still needs to be added. The generic dispatch path is not the same as the UI Plan launch path.
-
-When launching the dedicated Plan workflow:
-
-1. Resolve the project.
-2. Ensure the required analyses and site crawl are ready.
-3. Confirm all required Plan inputs and approval gates with the user.
-4. Call the tool without `confirm:true` first if a confirmation preview is useful.
-5. After explicit approval, call with `confirm:true`.
-6. Report `team_run_id`, `mission_id`, `workflow_id`, `workflow_ids`, `status`, `child_runs`, and the next polling step.
-
-If anything is missing, explain that nothing was started and no credits were spent, then name the exact remedy tool or Spryxa UI setup step.
+Report `workflow_run_id`, `kind: "team_run"`, `status`, and the next polling step. Later site-change application or promotion remains separately approval-gated.
 
 ## Common Operating Patterns
 
 For "what can Spryxa do here", use `spryxa_get_project_capabilities`, not a raw integration audit.
 
-For "what is connected", use `spryxa_list_integrations`.
+For "what is connected", use `spryxa_list_platform_connections`.
 
 For "start a mission", create or update the mission brief first, run the strategy sprint when the brief is ready, approve the plan only after the user has reviewed it, then dispatch the team.
 
